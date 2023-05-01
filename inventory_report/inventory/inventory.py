@@ -17,15 +17,13 @@ class Inventory:
         else:
             raise ValueError("Valor do path não reconhecido")
 
-
     @staticmethod
     def import_data(path, type):
         data = Inventory.check_type(path)
 
-        if (type == "simples"):
+        if type == "simples":
             return SimpleReport.generate(data)
-        elif (type == "completo"):
+        elif type == "completo":
             return CompleteReport.generate(data)
         else:
             raise ValueError("Deve ser simples ou completo")
-        
