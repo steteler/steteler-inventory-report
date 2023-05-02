@@ -4,6 +4,7 @@ from ..importer.xml_importer import XmlImporter
 from ..reports.simple_report import SimpleReport
 from ..reports.complete_report import CompleteReport
 
+reports = {"simples": SimpleReport, "completo": CompleteReport}
 
 class Inventory:
     @staticmethod
@@ -14,16 +15,9 @@ class Inventory:
             return JsonImporter.import_data(path)
         elif path.endswith(".xml"):
             return XmlImporter.import_data(path)
-        else:
-            raise ValueError("Valor do path não reconhecido")
 
     @staticmethod
     def import_data(path, type):
         data = Inventory.check_type(path)
 
-        if type == "simples":
-            return SimpleReport.generate(data)
-        elif type == "completo":
-            return CompleteReport.generate(data)
-        else:
-            raise ValueError("Deve ser simples ou completo")
+        return reports[type].generate(data)
