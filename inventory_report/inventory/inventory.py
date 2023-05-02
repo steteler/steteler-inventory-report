@@ -6,6 +6,7 @@ from ..reports.complete_report import CompleteReport
 
 reports = {"simples": SimpleReport, "completo": CompleteReport}
 
+
 class Inventory:
     @staticmethod
     def check_type(path):
